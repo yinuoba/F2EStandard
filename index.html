@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width" name="viewport">
+    <title>UPG前端规范</title>
+    <meta content="前端, 规范" name="keywords">
+    <meta content="前端规范 | http://qianduan.yrz.cn" name="description">
+    <meta content="no" name="apple-mobile-web-app-capable">
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/libs/prettify.css" type="text/css" rel="stylesheet" />
+    <script src="js/libs/modernizr.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/libs/showdown.js"></script>
+    <script type="text/javascript" src="js/libs/showdown-gui.js"></script>
+  </head>
+  <body data-spy="scroll">
+    <header>
+      <h1>UPG Front End Standards</h1>
+      <span class="description">UPG 前端规范</span>
+    </header>
+    <div class="container">
+      <nav>
+        <ul class="nav" id="nav">
+          <li class="active">
+            <a class="current" href="#1">规范说明</a>
+          </li>
+          <li>
+            <a href="#21html">HTML 规范</a>
+          </li>
+          <li>
+            <a href="#22css">CSS 规范</a>
+          </li>
+          <li>
+            <a href="#23javascript">Javascript 规范</a>
+          </li>
+          <li>
+            <a href="#3upg">UPG 项目脚手架</a>
+          </li>
+          <li>
+            <a href="#4">资源汇总</a>
+          </li>
+          <li>
+            <a href="#5">参考资料</a>
+          </li>
+          <li>
+            <a href="#6">附录</a>
+          </li>
+        </ul>
+      </nav>
+      <article>
+        <div class="content-box">
+          <div class="content">
+            <select id="paneSetting">
+              <option value="previewPane">[切换模式] 普通</option>
+              <option value="syntaxPane">[切换模式] MarkDown</option>
+              <option value="outputPane">[切换模式] HTML</option>
+            </select>
+            <textarea style="display:none;" id="outputPane" class="pane" readonly="readonly" rows="25" cols="100"></textarea>
+            <div id="previewPane" class="pane markdown-body"><noscript><h2>You'll need to enable Javascript to use this tool.</h2></noscript></div>
+<textarea style="display:none;" id="syntaxPane" class="pane" cols="80" rows="20" >
+## 1. 规范说明
+
+**注:** _本文档采用 [Front-End-Standards] 项目编写_
+
+### 1.1 规范目的
+项目在扩展，人员在增加，为提高团队相互协作效率，提高代码的规范性和可维护性，统一团队编码规范和风格。本规范文档一经确认，前端开发人员必须按本文档规范进行前台页面开发。
+
+此规范为参考规范，不全是硬性要求，仅让所有代码都是有规可循的，并且能够得到沉淀，减少重复劳动。
+
+本文档如有不对或者不合适的地方请及时提出，大家一起讨论决定后方可更改。
+
+## 2. 代码规范
+
+### 2.1 Html规范
+
+#### 2.1.1 文件命名规范
+
+1.Html文件统一用小写英文字母，数字与划线组合，其中**`不能包含汉字，空格与特殊字符`**
+
+  命名原则：可以参考PHP里的方法名，尽量使用驼峰式；使得你自己与工作组的每一个成员能够方便的理解每一个文件的意义;当在文件夹中使用“按名称排列”的命令时，同一种大类的文件能够排列在一起，以便查找，修改，替换等操作
+
+2.各子页命名的原则是以栏目英文翻译后取单一单词做名称如：
+
+  关于我们：`aboutus.html` ；反馈：`feedback`；产品：`product`；联系我们：`contactus`
+
+#### 2.1.2 html注释
+
+注释格式
+
+    <!-- 这儿是注释 -->
+
+’–’只能在注释的始末位置,不可置入注释文字区域;
+
+#### 2.1.3 html书写规范
+
+详见：[附录6.4：html书写规范](#64html)
+
+### 2.2 Css规范
+
+1.编码统一为utf-8
+
+2.协作开发及分工:
+
+  前端页面框架编辑者会根据各个模块, 同时根据页面相似程序, 事先写好大体框架文件, 分配给前端人员实现内部结构表现行为;
+共用css文件`reset.css`由前端页面框架编辑者书写, 协作开发过程中, 每个页面请务必都要引入, 此文件包含整站基础样式, 此文件不可随意 修改;
+`common.css`为页容样式；
+`mainsource.css`为当前项目开发模式下的其它css文件管理文件，mainsource文件夹放置其它各页面css，多人开发时，统一为自己订制一个代号，具体作用下文会做说明。
+预防多人开发同一个项目时的svn冲突。
+
+  _详细结构可以参见：[upg脚手架下的目录结构级说明](#32)_
+
+3.class与id命名与使用：
+
+  属性尽量不用Id，如特殊情况下有属性内容，使用请加上`css_`；
+其他样式名称由小写英文&数字&_来组合命名,如`i_comment`,`fontred`,`w200`,`h200`;
+避免使用中文拼音,尽量使用简易的单词组合；
+总之, 命名要语义化, 简明化。
+
+详见: [附录6.2：常用class/Id命名规范](#62classid)
+
+4.规范class与id命名(此条重要, 若有不明白请及时与i沟通)：
+
+  **a.** 通过从属写法规范, 示例见d;
+
+  **b.** 取父级元素id/class命名部分命名, 示例见d;
+
+  **c.** 重复使用率高的命名, 请以自己代号加下划线起始, 比如`i_clear`;
+
+  **d.** a,b两条, 适用于已建好框架的页面, 如, 要已建好框架的页面代码`<div id=”nav”></div>`中加入新的div元素,
+  按a命名法则: `<div id=”nav”><div class=”subNav”>…</div></div>`
+  样式写法:
+
+    #nav .subNav {……};
+
+  按b命名法则: `<div id=”nav”><div class=”nav_subnav”>…</div></div>`
+  样式写法:
+
+    .nav_subnav{……}
+
+5.css属性书写顺序, 建议遵循: 布局定位属性–>自身属性–>文本属性–>其他属性. 此条可根据自身习惯书写, 但尽量保证同类属性写在一起.
+
+属性列举： 布局定位属性主要包括: display & list-style & position（相应的 top, right, bottom, left） ＆ float & clear ＆ visibility ＆ overflow；
+
+自身属性主要包括: width & height & margin & padding & border & background
+
+
+6.书写代码前, 考虑并提高样式重复使用率;
+
+7.充分利用html自身属性及样式继承原理减少代码量, 比如:
+
+    <ul class=”list”>
+      <li>这儿是标题列表<span>2010-09-15</span></li>
+    </ul>
+
+    /*css样式*/
+    ul.list li{position:relative}
+    ul.list li span{position:absolute; right:0}
+
+8.样式表中中文字体名, 请务必转码成unicode码, 以避免编码错误时乱码;
+
+9.背景图片请尽可能使用sprite技术（css精灵）, 减小http请求, 考虑到多人协作开发, sprite按模块制作;
+
+10.使用table标签时(尽量避免使用table标签), 请不要用width/height/cellspacing/cellpadding等table属性直接定义表现, 应尽可能的利用table自身私有属性分离结构与表现, 如
+`thead,tr,th,td,tbody,tfoot,colgroup,scope(cellspaing及cellpadding的css控制方法`:
+
+    table{border:0;margin:0;border-collapse:collapse;}
+    table th, table td{padding:0;}
+
+reset.css文件中会初始化表格样式)
+
+11.杜绝使用
+
+    <meta http-equiv=”X-UA-Compatible” content=”IE=7“/>
+
+来兼容IE8
+
+12.用png图片做透明图片时, 要求图片格式为png-24格式,尽量避免兼容性属性的使用,比如text-shadow || css3的相关属性，毕竟现在兼容有限。
+
+13.必须为大区块样式添加注释,小区块适量注释；
+
+14.代码缩进与格式: 建议单行书写, 可根据自身习惯, 后期优化前端交互会统一处理;
+
+#### 2.2.1 图片相关规范
+
+i.所有页面元素类图片均放入images文件夹,测试用图片放于images/demoimg文件夹；
+
+ii.图片格式仅限于gif || png || jpg；
+
+iii.在保证视觉效果的情况下选择最小的图片格式与图片质量, 以减少加载时间；
+
+iv.尽量避免使用半透明的png图片(注：根据设计搞来；若使用, 请参考css规范相关说明)；
+
+v.运用css sprite技术集中小的背景图或图标, 减小页面http请求, 但注意, 请务必在对应的sprite psd源图中划参考线, 并保存至images目录下
+
+vi.命名全部用小写英文字母 || 数字 || _ 的组合，其中不得包含汉字 || 空格 || 特殊字符；尽量用易懂的词汇, 便于团队其他成员理解；
+另图片全称分为前后两部分，用下划线隔开，前端部分表示图片的大类性质，如：广告，icon，标志，按钮，菜单，背景。
+
+1.	页面顶端的较大的图片长方形图片取名：banner。
+2.	标志性的图片：logo。
+3.	如果是装饰用的列表临时图片：pic放在demoimg文件夹下。
+4.	按钮图片：btn。
+5.	在某一位置连续出现，性质相同的图片：menu。
+6.	不带连接表示标题的图片：title
+7.	例如： `ad_left01.gif` || `btn_submit.gif`；
+`banner_aboutus.jpg` , `banner_01.jpg`, `banner_02.jpg`, `logo_yrz.jpg`, `btn_big.jpg`, `btn_yellow.jpg`,  `menu_01.jpg`, `title_ad.jpg`, `title_news.jpg`
+
+vii.鼠标感应图片效果:`图片名称_on/off`
+
+  例如：`menu_on/off.png`，`button_on/off.png`
+
+#### 2.2.2 css注释
+
+a.组件注释
+
+    /**
+     * @name: 组件名
+     * @overview: 组件介绍
+     * @require: 依赖的样式
+     * @author: (xxx@gmail.com)
+     */
+
+b.块状或行内元素，都请使用 `/* comment */` 注释，注释文字前后端保持各有一个空格。
+
+c.为了您的体验着想，一目了然的代码，就不要注释了，比如:
+
+    display:none; /* 让元素看不见 */
+
+### 2.3 Javascript规范
+
+#### 2.3.1 文件结构和命名
+
+文件结构见 UPG项目脚手架：[js文件结构](#32)，文件命名见 UPG项目脚手架：[文件命名](#31)
+
+#### 2.3.2 编码风格
+
+##### 代码检测工具
+
+  根据不同IDE配置不同的检测工具(JSLint, JSHint等)及其选项，列举`JSHint`：
+
+    "jshint_options": {
+      "es3": true, //兼容es3规范，针对旧版浏览器编写的代码
+      "esnext": false, //不使用最新的es6规范
+      "camelcase": true, //使用驼峰式命名
+      "eqeqeq": false, //不强制使用===比较运算符
+      "expr": true, //允许未赋值的函数名表达式，例如console && console.log(1)
+      "freeze": false, //不限制对内置对象的扩展
+      "immed": true, //禁止未用括号包含立即执行函数
+      "latedef": true, //禁止先调用后定义
+      "maxparams": 4, //函数最多不超过4个参数
+      "noarg": false, //不禁止对arguments.caller和arguments.callee的调用
+      "noempty": false, //禁止空代码块
+      "nonew": false, //允许直接new实例化而不赋值给变量
+      "plusplus": false, //允许++和--运算符使用
+      "quotmark": "single", //字符串使用单引号
+      "smarttabs": false, //不允许混合tab和空格缩进
+      "maxerr": false,
+      "strict": false, //不强制使用es5严格模式
+      "sub": true, //允许用[]形式访问对象属性
+      "unused": false, //允许定义没用的变量，在某些函数回调中，经常出现多个参数，但不一定会用
+      "multistr": false, //禁止多行字符串，改用加号连接
+      "undef": true,  //禁止明确未定义的变量调用，如果你的变量（myvar）是在其他文件中定义的，可以使用/*global myvar */绕过检测
+      "forin": false, // 如果为真，那么，jsHint允许在for in 循环里面不出现hasOwnProperty
+      "devel": true, //允许对调试用的alert和console.log的调用
+      "jquery": true, //检查预定义的全局变量，防止出现$未定义，该项根据实际代码修改
+      "browser": true,
+      "predef": ["define", "seajs", "console", "require", "module"],
+      "wsh": true,
+      "evil": false, // 不允许使用eval
+      "asi": true, // 行尾分号
+      "newcap": true, // jsHint会要求每一个构造函数名都要大写字母开头
+      "curly": true, // 使用if和while等结构语句时加上{}来明确代码块
+      "maxlen": 100
+    }
+
+##### 缩进：
+
+  两个空格 `2space`，**注：** _不同IDE可以配置缩进风格_
+
+##### 注释：
+
+  方法内部使用 `//` ，方法外部使用YUIDoc注释，{{YUIDoc注释}}
+
+##### 代码格式：
+
+1.每行代码长度不超过100字符;
+
+2.空格：
+
+    //一元操作符前后不带空格
+    i++;
+    i--;
+
+    //二元操作符前后使用一个空格
+    var name = 'Hoogle';
+
+    //对象的属性冒号前没有空格，后面留一个空格
+    var obj = {
+      foo: 'foo',
+      bar: 'bar'
+    }
+
+    //方法定义的时候，括号前不留空格，括号后留一个空格
+    function test() {
+      //todo
+    }
+
+3.条件控制语句if不省略大括号对 `{}` **注：一条语句的时候也不能省**， 并且注意换行和空格
+
+    //if语句
+    if (condition){
+      //todo
+    } else if (condition) {
+      //todo
+    } else {
+      //todo
+    }
+
+4.多个变量用多个 `var` 声明
+
+    //多个变量声明
+    var foo = 'foo';
+    var bar = 'bar';
+
+##### 变量命名的风格：
+
+**注：** _所有变量均遵循驼峰式命名规则_
+
+1.jquery对象变量使用 `$` 开头
+
+    var $list = $('#list'); //jquery变量
+    var list = document.getElementById('list'); //普通变量
+
+2.类名首字母大写(ClassDefine)
+
+    //Person类
+    function Person(name){
+      this.name = name;
+    }
+
+3.方法名使用动词或动名词结合的驼峰式（getFunctionName，setFunctionName, isFunctionName，hasFunction）
+
+4.常量用大写，用下划线连接
+
+    //常量
+    var STATIC_VARIABLE = 100;
+    var PI = Math.PI;
+
+
+#### 2.3.3 语言规范
+
+1.变量命名必须加上 `var` 关键字
+
+2.语句结尾总是使用分号
+
+    var foo = function(a) {
+      console.log(a);
+    } //这里丢掉分号会有意想不到的结果
+    (function(){
+      console.log('hello');
+    })();
+
+3.创建基本类型时，不使用 `new` 关键字，而直接使用对象字面量，**注:** _除了在需要实例化一个对象，或罕见的需要延时加载数据的情况外_
+
+    //不使用new关键字创建
+    var list = new Array(1, 2, 3);
+    var obj = new Object();
+    //使用字面量
+    var list = [1, 2, 3];
+    var obj = {};
+
+4.大字符串的创建注意格式
+
+    //html结构的字符串推荐使用这种方式
+    var listHtml = '<ul class="list">' +
+                     '<li class="item">first item</li>' +
+                     '<li class="item">second item</li>' +
+                   '</ul>';
+
+5.使用闭包封装整个js文件代码
+
+6.避免使用 `eval`，`with`
+
+7.避免使用 `for ... in` 语句来循环数字，非得使用的情况下加上 `hasOwnProperty` 来判断
+
+8.避免使用IE下的条件注释
+
+    //不要这样子写:
+    var f = function () {
+      /*@cc_on if (@_jscript) { return 2* @*/  3; /*@ } @*/
+    };
+    //条件注释妨碍自动化工具的执行, 因为在运行时, 它们会改变 JavaScript 语法树.
+
+## 3. UPG项目脚手架
+
+### 3.1 文件命名
+
+1.统一使用英文小写(linux下是严格区分大小写)，无连接符号，如帮助中心模板页: _helpcenter.html_
+
+2.业务js跟服务走，如当前访问的url: `https://test.yrz.cn/Help/Security/index` ，对应在 `appjs` 目录下应该有该文件 `help/security/index.js`
+
+### 3.2 目录结构及说明
+
+    .项目根目录
+    +---public (静态目录)
+      +---.build (项目构建临时目录)
+      +---css (css目录)
+      |   +---mainsource(各个模块的css文件，开发环境由mainsource.css引入，生产环境被压到main.min.css中)
+      |   |   ---modules1.css
+      |   |   ---modules2.css
+      |   |   ---modules3.css
+      |   ---reset.css (重置、统一浏览器样式)
+      |   ---common.css (头部、底部、表格、按钮等公共样式)
+      |   ---mainsource.css (引入mainsource该文件夹下的模块css文件)
+      +---dist (grunt发布目录)
+      |   +---js
+      |   |   +---basejs
+      |   |   +---appjs
+      |   |   +---modulejs
+      |   |   +---componentjs
+      |   +---css
+      |   |   ---base.min.css (合并reset.css和common.css)
+      |   |   ---main.min.css (合并mainsource等其他模块css文件)
+      +---images (组件、插件的图片文件夹)
+      |   +---demoimg (放测试用的图片)
+      |   +---97date
+      |   +---box2
+      |   +---colorbox
+      |   +---hovercard
+      |   +---industry
+      |   +---jcarousel
+      |   +---jcorp
+      |   +---jqueryui
+      |   +---load
+      |   +---multiselect
+      |   +---orderlist
+      |   +---pop
+      |   +---popimage
+      |   +---search
+      |   +---tipsy
+      |   +---upload
+      |   +---uploadify
+      |   +---webcam
+      |   +---zclip
+      +---js (js开发目录，符合cmd规范)
+      |   +---appjs (与业务对应的模块)
+      |   |   +---common (公用模块)
+      |   |      ---common.js (全站共用业务js)
+      |   +---basejs (基础模块)
+      |   |   ---jquery.js
+      |   |   ---prototype.js
+      |   |   ---sea.js
+      |   |   ---seastyle.js
+      |   |   ---upgTool.js
+      |   +---componentjs (富应用组件)
+      |   |   +---highcharts (图表)
+      |   |   +---ueditor (百度ueditor编辑器)
+      |   +---moudlejs (cmd模块组件)
+      |   |   +---ajaxform
+      |   |   +---animatecolor
+      |   |   +---area
+      |   |   +---autocomplete
+      |   |   +---banner
+      |   |   +---box2
+      |   |   +---box3
+      |   |   +---colorbox
+      |   |   +---cookie
+      |   |   +---countdown
+      |   |   +---datepicker
+      |   |   +---datepickerui
+      |   |   +---easing
+      |   |   +---ghosttext
+      |   |   +---hovercard
+      |   |   +---hoverdelay
+      |   |   +---industry
+      |   |   +---jcarousel
+      |   |   +---jcorp
+      |   |   +---jqueryui
+      |   |   +---jscrollpane
+      |   |   +---mousewheel
+      |   |   +---multiselect
+      |   |   +---orderlist
+      |   |   +---passwordrate
+      |   |   +---pop
+      |   |   +---popimage
+      |   |   +---position
+      |   |   +---rotate
+      |   |   +---search
+      |   |   +---slideimgtab
+      |   |   +---tagit
+      |   |   +---textlength
+      |   |   +---timepicker
+      |   |   +---tipsy
+      |   |   +---upgui
+      |   |   +---upload
+      |   |   +---uploadify
+      |   |   +---validate
+      |   |   +---verifyid
+      |   |   +---webcam
+      |   |   +---widget
+      |   |   +---zclip
+      |   ---normaljs (非cmd模块js)
+      +---tpl (静态模板)
+      +---bin (运用在项目中时的一些脚本片段)
+      |   ---appjs.php (项目中引入对应业务的方法)
+      |   ---baseUrl2VersionUrl.php (根据文件路径返回以最后修改时间为版本号的url)
+      |   ---cssimage.py (给css文件中的背景图片url加版本号)
+      |   ---publish.sh (打包脚本，一般放在打包服务器的更新脚本中)
+      |   ---static.include.html (引入静态文件)
+      |   ---Preferences.sublime-settings (sublime配置文件)
+      |   ---SublimeLinter.sublime-settings (SublimeLinter配置文件)
+      |---package.json (grunt打包配置文件)
+      |---Gruntfile.js (grunt打包配置文件)
+      |---updateAppjs.json (grunt打包配置文件，用于暂存一定时间内改动过的appjs中的js文件)
+      |---cssimage.py (给css中的背景图片加版本号，在发布脚本中执行)
+
+## 4. 生产力工具推荐
+
+**Mind Map版本：**[前端工具](http://www.mindmeister.com/368884878/_)
+
+#### 4.1 for Mac OS
+*for more app detial check -> [IUSETHIS](http://osx.iusethis.com/user/hzlzh 'App pack')*
+##### 4.1.1 前端相关工具(Mac)
+
+* 编辑器：[Sublime Text 2] / [TextMate 2] / [Vim] / [Intellij IDEA]
+* 命令行：[iTerm2]
+* 浏览器调试环境：[Chrome] / [Firefox] + [Firebug]
+* 移动设备调试环境：[Mozilla Fennec]
+* 兼容性测试：[VirtualBox] + Win XP（IE 8）
+* 版本控制工具：[GitHub for Mac] / [Versions] / [SourceTree]
+* FTP工具：[Filezilla] / [ForkLift]
+* HTTP抓包及Post/Get模拟：[Charles]
+* PHP集成环境：[XAMPP for Mac] / [MAMP]
+* SQL数据库管理：[Sequel Pro]
+* 标注工具：[Mark Man] / [xScope]
+* 取色拾色器： [Frank DeLoupe] / [Sip] / [Snip] / [xScope]
+* MarkDown编辑器：[Mou]
+* 浏览器免刷新开发环境：[LiveReLoad] / [CodeKit]
+* CSS Sprite切图工具：[SpriteRight]
+* Less -> CSS 编译：[CodeKit] / [LiveReLoad] / [Less]
+* 配色方案工具：[ColorSchemer Studio]
+* 多浏览器Cookie管理：[Cookie]
+* 图片素材收集：[Sparkbox] / [Pixa]
+
+##### 4.1.2 其他效率工具
+
+* 快速启动及切换app：[Alfred]
+* 剪切板历史记录：[Alfred]*(Fretures -> Clipboard)*
+* 笔记：[Evernote]
+* 轻量级GTD：[Clear]
+* 压缩解压：[The Unarchiver] / [Keka] / [iPack]
+* 语言文档和快捷词扩展：[Dash]
+* 时间中断提醒：[BreakTime]
+
+#### 4.2 前端相关工具(Windows)
+
+* 编辑器：[Sublime Text 2] / [Vim] / [Intellij IDEA]
+* 命令行：[Putty]
+* 浏览器调试环境：[Chrome] / [Firefox]
+* 移动设备调试环境：[Chrome Remote USB Debugging]
+* 版本控制：[Subversion] / [Github for Windows]
+* FTP工具：[Filezilla]
+* 抓包工具：[Fiddler2]
+* MarkDown：[MarkdownPad]
+* 浏览器免刷新开发环境：[LiveReLoad] / [F5]
+* Less -> CSS编译：[less.org]*(nodejs环境下编译)*
+* Haml -> Html编译：[haml.info]*(Gem下编译)*
+* 响应式设计查看工具：[Firefox Responsive Design View]
+
+##### 4.2.1 其他效率工具(Windows)
+
+* 笔记：[Evernote]
+* 压缩解压：[7z]
+
+#### 4.3 其他收集
+* Firefox 扩展收藏集 -> [Firefox Add-ons collections]
+* Chrome 扩展 -> 待添加
+* Sublime Text 2 技巧  -> [ST2 资源技巧汇总]
+* YUIDoc
+* grunt：
+`grunt-cmd-transport`
+`grunt-cmd-concat`
+`grunt-contrib-jshint`
+`grunt-contrib-uglify`
+`grunt-contrib-watch`
+`grunt-contrib-clean`
+`grunt-contrib-cssmin`
+`grunt-contrib-copy`
+* sublime（推荐）:
+`emmet（zen coding）`
+`jshint`
+`css精灵`
+`DocBlock`
+* Fiddle
+* firebug
+* Yslow
+* IETester
+* 浏览器: FireFox–>IE7–>IE8–>IE9 –>IE10 –>Opera–>Chrome
+
+#### 4.4 相关技巧
+[Wiki page index]
+
+* [各浏览器的缓存清除方法]
+* [测试技巧Gmail 添加词缀 .+ 获得多个邮件的方法]
+* [关于Mac Win Linux跨系统传文件，文件名乱码的解决方案]
+* [技术团队"路由代理"解决方案和使用须知]
+
+## 5. 参考资料
+#### 5.1 参考文档 _(需要`10.50.28.4`上svn账户权限来下载)_
+**注：** _工具、部署、流程参考文档_
+
+* [Jira上研发过程说明.docx]
+* [Linux下Grunt自动打包环境配置.doc]
+* [Linux下nodeJs环境安装.doc]
+* [ns_message项目部署.doc]
+* [服务器开通gzip压缩.doc]
+* [前端常用工具.mmap]
+* [JavaScript规范.mmap]
+* [脚手架维护.mmap]
+
+**注：** _学习资料_
+
+* [DHTML.chm]
+* [ECMA-262-5.1中文版.pdf]
+* [JScript.chm]
+* [JavaScript_patterns.pdf]
+* [JavaScript语言精粹.pdf]
+* [JavaScript高级程序设计（第3版）（文字版）.pdf]
+* [jQuery-api.chm]
+
+#### 5.2 参考网站
+**注：** _工具类_
+
+* [Grunt中文网](http://gruntjs.cn/)
+* [开源中国在线工具](http://tool.oschina.net/) _(有相当多的前后端实用的工具，强烈推荐哦 ^-^ )_
+
+**注：** _学习类_
+
+* [markdown语法说明(简体中文)](http://wowubuntu.com/markdown/)
+
+## 6. 附录
+#### 6.1 hack规则
+
+1.	一般情况下，不要使用 IE 条件注释： <!-[if IE]><![endif]->
+2.	通用 Hack
+3.	.all-IE{property:value\9;}
+4.	.gte-IE-8{property:value\0;}
+5.	.lte-IE-7{*property:value;}
+6.	.IE-7{+property:value;}
+7.	.IE-6{_property:value;}
+8.	.not-IE{property//:value;}
+9.	@-moz-document url-prefix() { .firefox{property:value;} }
+10.	@media all and (-webkit-min-device-pixel-ratio:0) { .webkit{property:value;} }
+11.	@media all and (-webkit-min-device-pixel-ratio:10000),not all and (-webkit-min-device-pixel-ratio:0) { .opera{property:value;} }
+12.	@media screen and (max-device-width: 480px) { .iphone-or-mobile-s-webkit{property:value;} }
+13.	当然，强烈建议你使用更优雅的hack方式。那就是避免hack。或者在书写上，做点小trick。比如：
+14.	.selector .child{property:value;} /* for ie-6 */
+15.	.selector > .child{property:value;} /* except ie-6 */
+16.	关于Hack: 在firefox写完，IE有问题？还是其他浏览器也出现了。你知道IE Hack 能解决。我想，你也可能知道，用其他方法也能绕过。建议少用Hack。
+
+#### 6.2 常用class/Id命名规范
+
+<table>
+  <tr>
+    <th colspan="5">常用类</th>
+  </tr>
+  <tr>
+    <td>页　眉：header</td><td>内　容：content</td><td>容　器：container</td><td>页　脚：footer</td><td>版　权：copyright</td>
+  </tr>
+  <tr>
+    <td>导　航：`nav`</td><td>主导航:mainnav(globalnav)</td><td>顶导航：topnav</td><td>子导航：subnav</td><td>菜单：menu</td>
+  </tr>
+  <tr>
+    <td>子菜单：submenu</td><td>标　志：logo</td><td>标　语：banner</td><td>标　题：title</td><td>侧边栏：sidebar</td>
+  </tr>
+  <tr>
+    <td>状态：status</td><td>投票：vote</td><td>合作伙伴：partner</td><td>友情链接：friendlink</td><td>外　套：wrap</td>
+  </tr>
+  <tr>
+    <td>商　标：label</td><td>左导航：leftsideBar</td><td>右导航：rightsideBar</td><td>菜单内容：menu1content</td><td>菜单容量：menucontainer</td>
+  </tr>
+  <tr>
+    <td>子图标：Icon</td><td>注　释：note</td><td>搜　索：search</td><td>按　钮：btn</td><td>登陆条：loginbar</td>
+  </tr>
+  <tr>
+    <td>登　录：login</td><td>链　接：link</td><td>信息框：manage</td><td>标签页：tab</td><td>文章列表：list</td>
+  </tr>
+  <tr>
+    <td>提示信息：msg</td><td>小技巧：tips</td><td>加入：joinus</td><td>指南：guild</td><td>服务：service</td>
+  </tr>
+  <tr>
+    <td>热点：hot</td><td>新闻：news</td><td>下载：download</td><td>注册：regsiter</td><td>功能区： shop(如购物车，收银台)</td>
+  </tr>
+  <tr>
+    <th colspan="5">模块前缀</th>
+  </tr>
+  <tr>
+    <th>作用</th>
+    <td colspan="4">
+      <table>
+        <tr>
+          <td>设置: set</td><td>添加: add</td><td>删除: del</td><td>操作: op</td><td>密码: pw</td><td>导入: inc</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th>类型</th>
+    <td colspan="4">
+      <table>
+        <tr>
+          <td>按钮: bt</td><td>文本: tx</td><td>段落: p</td><td>图标: icon</td><td>颜色: color,c</td><td>背景: bg</td><td>边框: bor</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th>状态</th>
+    <td colspan="4">
+      <table>
+        <tr>
+          <td>成功: suc</td><td>失败: lost</td><td>透明: tran</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <th>位置</th>
+    <td colspan="4">
+      <table>
+        <tr>
+          <td>公共: gb</td><td>边框: bor</td><td>弹出: pop</td><td>标题: title,tit</td><td>菜单: menu</td><td>内容: cont</td>
+          <td>提示: hint</td><td>导航: nav</td><td>信息: info</td><td>预览: pvw</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+
+
+
+#### 6.3 Reset.css 部分代码(参考)
+
+    Html,body{padding:0;margin:0;font:12px/normal SunSin;color:#666; background:#ffffff; }
+    h1, h2, h3, h4, h5, h6, form, div, p, i, img, ul, li, ol, table, tr, td,th, fieldset, label, legend,button,input { margin:0;padding:0;}
+    li{list-style:none;}
+    img{border:none; vertical-align:middle; }
+    table{border-collapse:collapse;}
+    hr{clear:both;border-width:0;border-top:1px solid #ccc;border-bottom:1px solid #FFF;height:2px;overflow:hidden;}
+
+    /*link*/
+    a:link {color:#333;text-decoration:none;font-family:arial;}
+    a:visited {color:#333;text-decoration:none;font-family:arial;}
+    a:hover {color:#bc2931; text-decoration:underline;font-family:arial;}
+    a:active {color:#bc2931;}
+
+    /*font*/
+    .f12{font-size:12px;}
+    .f14{font-size:14px;}
+    .fb{font-weight:800;}
+    .fi{font-style:italic;}
+    .dn{display:none;}
+    .db{display:block;}
+    .fl{float:left;}
+    .fr{float:right}
+    .dele{text-decoration:line-through;}
+    .ful {text-decoration:underline;}
+
+#### 6.4 html书写规范
+
+1.文档类型声明及编码: 统一为html5声明类型`<!DOCTYPE html>`; 编码统一为`<meta charset=”utf-8″ />`, 书写时利用IDE实现层次分明的缩进;
+
+2.非特殊情况下样式文件必须外链至`<head>…</head>`之间;非特殊情况下JavaScript文件必须外链至页面底部;
+
+3.引入样式文件或JavaScript文件时, 须略去默认类型声明, 写法如下:
+
+    <link rel=”stylesheet”type=”text/css” href=”…” />
+    <style>…</style>
+    <script src=”…”></script>
+
+4.所有编码均遵循xhtml标准, 标签 & 属性 & 属性命名 必须由小写字母及下划线数字组成, 且所有标签必须闭合, 包括`<br />`, `<hr />`等; 属性值必须用双引号包括;
+
+5.充分利用无兼容性问题的html自身标签, 比如span, em, strong, optgroup, label,等等; 需要为 html元素添加自定义属性的时候, 首先要考虑下有没有默认的已有的合适标签去设置, 如果没有, 可以使用须以”data-”为前缀来添加自定义属性，避免使用”data:”等其他命名方式;
+
+6.语义化html, 如标题根据重要性用h*(同一页面只能有一个h1), 段落标记用p, 列表用ul, 内联元素中不可嵌套块级元素;
+
+7.尽可能减少div嵌套, 如
+
+    <div class=”box”>
+      <div class=”welcome”>
+        欢迎访问XXX, 您的用户名是<div class=”name”>用户名</div>
+      </div>
+    </div>
+
+完全可以用以下代码替代:
+
+    <div class=”box”>
+      <p>欢迎访问XXX, 您的用户名是<span>用户名</span></p>
+    </div>
+
+8.书写链接地址时, 必须避免重定向，例如：`href=”http://itaolun.com/”`, 即须在URL地址后面加上“/”；
+
+9.在页面中尽量避免使用style属性,即`style=”…”`;
+
+10.必须为含有描述性表单元素(checkbox, radio)添加label, input, textarea按实际需要如:
+
+    <p>姓名: <input type=”text” id=”name” name=”name” /></p>
+
+须写成:
+
+    <p><label>姓名:<input type=”text” id=”name” /></label></p>
+
+11.重要图片必须加上alt属性; 给重要的元素和截断的元素加上`title`;
+
+12.给区块代码及重要功能(比如循环)加上注释, 方便后台添加功能;
+
+13.特殊符号使用: 尽可能使用代码替代: 比如 <(<) & >(&gt;) & 空格( ) & »(») 等等;
+
+14.书写页面过程中, 请考虑向后扩展性;
+
+15.class & id 参见 [css书写规范](#22css)
+
+16.HTML文件缩进以2个空格为标准。
+
+
+## 其他
+
+1. 开发过程中严格按分工完成页面, 以提高css复用率, 避免重复开发;
+2. 减小沉冗代码, 书写所有人都可以看的懂的代码. 简洁易懂是一种美德. 为用户着想, 为服务器着想.
+
+
+[reflows，repaints]: http://www.zhangxinxu.com/wordpress/2010/01/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98%EF%BC%9Acss%E6%80%A7%E8%83%BD%E8%AE%A9javascript%E5%8F%98%E6%85%A2%EF%BC%9F/  "重绘,回流参考"
+[src="" 问题]: http://js8.in/555.html "src="" 问题"
+[a标签占位符问题]: http://www.v2ex.com/t/48511/ "a标签占位符问题"
+
+[匈牙利命名法]: http://zh.wikipedia.org/wiki/%E5%8C%88%E7%89%99%E5%88%A9%E5%91%BD%E5%90%8D%E6%B3%95 "Wiki:匈牙利命名法"
+[小駝峰式命名法]:http://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB "小駝峰式命名法"
+[CSS Compressor]: http://www.csscompressor.com/ "CSS 压缩"
+[JS Compressor]: http://javascriptcompressor.com/ "JS 压缩和混淆"
+[HTML 符号实体]: http://www.w3school.com.cn/html/html_entities.asp
+[Google JSON Style Guide]:http://google-styleguide.googlecode.com/svn/trunk/jsoncstyleguide.xml
+[JSON Style Guide翻译]:https://github.com/darcyliu/google-styleguide/blob/master/JSONStyleGuide.md
+[meta viewport]: https://developer.mozilla.org/en-US/docs/Mobile/Viewport_meta_tag "<meta> ViewPort"
+[CSS Media Queries]: http://css-tricks.com/css-media-queries/
+[resize 事件]: http://api.jquery.com/resize/
+
+[Lesselements]: http://lesselements.com/
+[Bootstrap]: http://twitter.github.com/bootstrap/ "Bootstrap, from Twitter"
+[reset.css]: https://github.com/hzlzh/cool-head/blob/master/Template/css/libs/reset.css "CSS reset 文件"
+[reset.less]: https://github.com/hzlzh/cool-head/blob/master/Template/css/libs/reset.less "reset.less from HTML5 Boilerplate"
+[elements.less]: https://github.com/hzlzh/cool-head/blob/master/Template/css/libs/elements.less "elements.less from lesselements"
+[HTML5 验证]: http://html5.validator.nu/
+
+[Modernizr]: http://modernizr.com/download/
+[DD_belatedPNG]: http://www.dillerdesign.com/experiment/DD_belatedPNG/
+[html5shiv]: https://github.com/aFarkas/html5shiv
+[jquery-scroll]: https://github.com/thomd/jquery-scroll/
+[Lionbars]: https://github.com/Charuru/lionbars
+[bootstrap-tooltips]: http://twitter.github.com/bootstrap/javascript.html#tooltips
+[bootstrap-scrollspy]: http://twitter.github.com/bootstrap/javascript.html#scrollspy
+[grumble.js]: https://github.com/jamescryer/grumble.js
+[lavalamp]: http://www.gmarwaha.com/blog/2007/08/23/lavalamp-for-jquery-lovers/
+[iscroll 4]: https://github.com/cubiq/iscroll
+[kwicks for jQuery]: https://github.com/Mottie/Kwicks
+[isotope]: https://github.com/desandro/isotope
+[jQ shake]: https://gist.github.com/3270711
+[fancyBox]: https://github.com/fancyapps/fancyBox
+[KenDo UI]: http://www.kendoui.com/purchase.aspx
+[elastic]: http://unwrongest.com/projects/elastic/
+[cool-head]: https://github.com/hzlzh/cool-head
+[noty]: https://github.com/needim/noty
+[jQuery grumble]: https://github.com/jamescryer/grumble.js
+[tipsy]: https://github.com/jaz303/tipsy
+[jQuery Knob]: https://github.com/aterrien/jQuery-Knob
+
+[各浏览器的缓存清除方法]: https://github.com/GeekPark/Doc/wiki/%5B%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8D%E7%BC%93%E5%AD%98%5D%E5%90%84%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B5%8B%E8%AF%95%E7%BD%91%E9%A1%B5%E6%97%B6%E6%B8%85%E9%99%A4%E7%BC%93%E5%AD%98%E7%9A%84%E6%96%B9%E6%B3%95
+[测试技巧Gmail 添加词缀 .+ 获得多个邮件的方法]: https://github.com/GeekPark/Doc/wiki/%5B%E6%B5%8B%E8%AF%95%E6%8A%80%E5%B7%A7%5DGmail-%E6%B7%BB%E5%8A%A0%E8%AF%8D%E7%BC%80(.--)%E8%8E%B7%E5%BE%97%E5%A4%9A%E4%B8%AA%E9%82%AE%E4%BB%B6%E7%9A%84%E6%96%B9%E6%B3%95
+[关于Mac Win Linux跨系统传文件，文件名乱码的解决方案]: https://github.com/GeekPark/Doc/wiki/%E5%85%B3%E4%BA%8E%5BMac%5D-%5BWin%5D-%5BLinux%5D%E8%B7%A8%E7%B3%BB%E7%BB%9F%E4%BC%A0%E6%96%87%E4%BB%B6%EF%BC%8C%E6%96%87%E4%BB%B6%E5%90%8D%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88
+[技术团队"路由代理"解决方案和使用须知]: https://github.com/GeekPark/Doc/wiki/%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F%5B%E8%B7%AF%E7%94%B1%E4%BB%A3%E7%90%86%5D%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E5%92%8C%E4%BD%BF%E7%94%A8%E9%A1%BB%E7%9F%A5
+[Mobile First]: http://www.lukew.com/ff/entry.asp?933 "Mobile First"
+
+
+[Sublime Text 2]:http://www.sublimetext.com/2
+[TextMate 2]:https://github.com/textmate/textmate
+[Intellij IDEA]:http://www.jetbrains.com/idea/
+[Vim]:http://macvim.org/
+[Chrome]:http://www.google.com/chrome
+[Firefox]:http://www.mozilla.org/
+[Firebug]:http://getfirebug.com/
+[VirtualBox]:https://www.virtualbox.org/
+[Versions]:http://versionsapp.com/
+[GitHub for Mac]:http://mac.github.com/
+[SourceTree]:http://www.sourcetreeapp.com/
+[Filezilla]:http://filezilla-project.org/
+[ForkLift]:http://itunes.apple.com/us/app/forklift/id412448059?mt=12
+[Charles]:http://www.charlesproxy.com/
+[XAMPP for Mac]:http://www.apachefriends.org/en/xampp-macosx.html
+[MAMP]:http://http://mamp.info/
+[Mark Man]:http://www.getmarkman.com/
+[xScope]:http://itunes.apple.com/us/app/xscope/id447661441?mt=12
+[Sip]:http://itunes.apple.com/app/sip/id507257563?mt=12
+[Snip]:http://itunes.apple.com/us/app/snip/id512505421?mt=12
+[Mou]:http://mouapp.com/
+[LiveReLoad]:http://http://livereload.com/
+[Cookie]:http://itunes.apple.com/us/app/cookie/id415585910?mt=12
+[ColorSchemer Studio]:http://itunes.apple.com/us/app/colorschemer-studio/id417896628?mt=12
+[Less]:http://incident57.com/less/
+[CodeKit]: http://incident57.com/codekit/
+[SpriteRight]:http://itunes.apple.com/us/app/spriteright/id488584662?mt=12
+[iTerm2]: http://www.iterm2.com/
+[Mozilla Fennec]: http://www.mozilla.org/projects/fennec
+[Sequel Pro]: http://www.sequelpro.com/
+[Sparkbox]: http://seesparkbox.com/
+[Pixa]: http://www.pixa-app.com/
+[Alfred]: http://www.alfredapp.com/
+[Evernote]: http://www.evernote.com/
+[The Unarchiver]: https://itunes.apple.com/hk/app/the-unarchiver/id425424353?mt=12
+[Keka]: https://itunes.apple.com/us/app/keka/id470158793?mt=12
+[iPack]: https://itunes.apple.com/us/app/ipack/id433386677?mt=12
+[Frank DeLoupe]: http://www.jumpzero.com/frank/
+[Dash]: http://kapeli.com/
+[BreakTime]: http://itunes.apple.com/cn/app/breaktime/id427475982?mt=12
+[Clear]: http://itunes.apple.com/cn/app/breaktime/id427475982?mt=12
+
+[Chrome Remote USB Debugging]: https://developers.google.com/chrome/mobile/docs/debugging
+[Fiddler2]: http://www.fiddler2.com/fiddler2/
+[Subversion]: http://subversion.apache.org/
+[Putty]: http://www.putty.org/
+[MarkdownPad]: http://markdownpad.com/
+[F5]: http://www.getf5.com/
+[less.org]: http://lesscss.org/
+[haml.info]: http://haml.info/
+[Github for Windows]: http://windows.github.com/
+[Firefox Responsive Design View]: https://developer.mozilla.org/en-US/docs/Tools/Responsive_Design_View/
+[7z]: http://www.7-zip.org/
+
+[temp.im]: http://temp.im/ "Placehold image"
+[placehold.us]: http://placehold.us/
+
+[Firefox Add-ons collections]: https://addons.mozilla.org/en-US/firefox/collections/hzlzh/hzlzh/
+[ST2 资源技巧汇总]: http://www.douban.com/group/topic/28027863/
+[Wiki page index]: https://github.com/GeekPark/Doc/wiki/_pages
+
+[12 Killer Tips and Tricks for Building HTML Email]: http://www.queness.com/post/8784/12-killer-tips-and-tricks-for-building-html-email
+[Coding HTML Newsletters (EDM)]: http://www.web-ed.com.au/2011/05/coding-html-newsletters-edms-quick-guide/
+
+[MIT License]: http://en.wikipedia.org/wiki/MIT_License
+
+[Front-End-Standards]: https://github.com/hzlzh/Front-End-Standards
+[ECMA-262-5.1中文版.pdf]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%96%99/ECMA-262-5.1%e4%b8%ad%e6%96%87%e7%89%88.pdf
+[JavaScript_patterns.pdf]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%96%99/JavaScript_patterns.pdf
+[JavaScript语言精粹.pdf]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%96%99/JavaScript%e8%af%ad%e8%a8%80%e7%b2%be%e7%b2%b9.pdf
+[JavaScript高级程序设计（第3版）（文字版）.pdf]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%96%99/JavaScript%e9%ab%98%e7%ba%a7%e7%a8%8b%e5%ba%8f%e8%ae%be%e8%ae%a1%ef%bc%88%e7%ac%ac3%e7%89%88%ef%bc%89%ef%bc%88%e6%96%87%e5%ad%97%e7%89%88%ef%bc%89.pdf
+[jQuery-api.chm]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%96%99/jQuery-api.chm
+[DHTML.chm]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%96%99/DHTML.chm
+[JScript.chm]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E8%B5%84%E6%96%99/JScript.chm
+
+[Jira上研发过程说明.docx]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/Jira%e4%b8%8a%e7%a0%94%e5%8f%91%e8%bf%87%e7%a8%8b%e8%af%b4%e6%98%8e.docx
+[Linux下Grunt自动打包环境配置.doc]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/Linux%e4%b8%8bGrunt%e8%87%aa%e5%8a%a8%e6%89%93%e5%8c%85%e7%8e%af%e5%a2%83%e9%85%8d%e7%bd%ae.doc
+[Linux下nodeJs环境安装.doc]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/Linux%e4%b8%8bnodeJs%e7%8e%af%e5%a2%83%e5%ae%89%e8%a3%85.doc
+[ns_message项目部署.doc]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/ns_message%e9%a1%b9%e7%9b%ae%e9%83%a8%e7%bd%b2.doc
+[服务器开通gzip压缩.doc]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%bc%80%e9%80%9agzip%e5%8e%8b%e7%bc%a9.doc
+[前端常用工具.mmap]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/%e5%89%8d%e7%ab%af%e5%b8%b8%e7%94%a8%e5%b7%a5%e5%85%b7.mmap
+[JavaScript规范.mmap]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/JavaScript%e8%a7%84%e8%8c%83.mmap
+[脚手架维护.mmap]: http://10.50.28.4/upg/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/%E5%89%8D%E7%AB%AF%E6%96%87%E6%A1%A3/%e8%84%9a%e6%89%8b%e6%9e%b6%e7%bb%b4%e6%8a%a4.mmap
+
+</textarea>
+          </div>
+        </div>
+      </article>
+    </div>
+    <footer>
+        <div id="footer">
+    <span id="convertTextControls" style="display:none">
+      <button id="convertTextButton" type="button" title="Convert text now">
+        Convert text
+      </button>
+      <select id="convertTextSetting">
+        <option value="delayed">in the background</option>
+        <option value="continuous">every keystroke</option>
+        <option value="manual">manually</option>
+      </select>
+    </span>
+    <span class="process-time">processing time </span><span id="processingTime" title="Last processing time">0 ms</span>
+  </div>
+    <!-- <a class="forkme" target="_blank" title="Fork me on Github" href="https://github.com/hzlzh/Front-End-Standards">Fork me on GitHub</a> -->
+    </footer>
+    <script type="text/javascript" src="js/libs/prettify.js"></script>
+    <script type="text/javascript" src="js/libs/bootstrap-scrollspy.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
